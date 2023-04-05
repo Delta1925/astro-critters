@@ -27,12 +27,13 @@
 		"build": "lightrix build src/**/*.ts"
 	},
 	"dependencies": {
-		"critters": "0.0.16",
+		"critters": "^0.0.16",
 		"files-pipe": "0.0.1"
 	},
 	"devDependencies": {
 		"@lightrix/config": "0.0.8",
 		"@lightrix/scripts": "0.1.6",
+		"@types/node": "^18.15.11",
 		"astro": "2.1.9"
 	},
 	"publishConfig": {
