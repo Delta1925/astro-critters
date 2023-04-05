@@ -21,15 +21,16 @@ import * as fs from "fs";
 
 class CrittersAstroPlugin extends Critters {
 	constructor(options: Options){
+		// @ts-ignore
 		super(options);
 	}
 
 	process(html: string) {
-		const out = super.process(html);
-		return out
+		return super.process(html) 
 	}
 
 	pruneSource(style: { $$name: string; }, before: string, sheetInverse: string) {
+		// @ts-ignore
 		const isStyleInlined = super.pruneSource(style, before, sheetInverse);
 		const name = style.$$name;
 
@@ -65,6 +66,7 @@ export default (options: Options = {}): AstroIntegration => {
 			options["path"] instanceof Array ||
 			options["path"] instanceof Set
 		) {
+			// @ts-ignore
 			for (const path of options["path"]) {
 				paths.add(path);
 			}
@@ -83,6 +85,7 @@ export default (options: Options = {}): AstroIntegration => {
 					return;
 				}
 
+				// @ts-ignore
 				for (const path of paths) {
 					const _path = await applyTo(path, (url: URL | string) =>
 						url instanceof URL ? fileURLToPath(url) : url
