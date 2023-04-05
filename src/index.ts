@@ -20,27 +20,28 @@ import * as path from "path";
 import * as fs from "fs";
 
 class CrittersAstroPlugin extends Critters {
-	constructor(options: Options){
-		// @ts-ignore
+	constructor(options: Options) {
 		super(options);
 	}
 
 	process(html: string) {
-		return super.process(html) 
+		const out = super.process(html);
+		return out
 	}
 
 	pruneSource(style: { $$name: string; }, before: string, sheetInverse: string) {
-		// @ts-ignore
 		const isStyleInlined = super.pruneSource(style, before, sheetInverse);
 		const name = style.$$name;
 
-		// @ts-ignore
-		const abs = path.join(this.options.path, name);
+		if (name) {
+			// @ts-ignore
+			const abs = path.join(this.options.path, name);
 
-		if (isStyleInlined) {
-			fs.rm(abs, () => {});
-		} else {
-			fs.writeFile(abs, sheetInverse, () => {});
+			if (isStyleInlined) {
+				fs.rm(abs, () => { });
+			} else {
+				fs.writeFile(abs, sheetInverse, () => { });
+			}
 		}
 
 		return isStyleInlined;
